@@ -1,9 +1,36 @@
 <html>
   <head>
     <title>Testing Only</title>
+    <script
+        src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous">
+</script>
   </head>
   <body>
-    <h1>Hello World 1</h1>
-      <form action = "test1.py" method=POST>hi</form>
+    <h1>Hello World<h2>
+    <form action = "test1.py"></form>
+
+    <input type="text" name="message">
+    <button class="send">Send Msg</button>
+<script>
+    $(document).ready(function(){
+        $('.send').click(function(){
+            const message = $('[name=message]').val();
+            $.ajax({
+
+                url : "test1.py",
+                method : 'post',
+                data : {message_py: message},
+                dataType : 'text',
+                success : function(data)
+                {
+                    alert(data);
+                }
+            });
+        });
+    });
+</script>
+
   </body>
 </html>
