@@ -11,24 +11,24 @@
 </script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    $.ajax({
+    $(document).ready(function(){
+        $("button").click(function(){
+            $.ajax({
     type: 'POST',
-    url: "test.py",
+    url: "test1.py",
     data: {param: "hello ji"}, //passing some input here
     dataType: "text",
     success: function(data){
-       output = data;
-       alert(output);
+        $("p").text(data);
     }
-}).done(function(data){
-console.log(data);
-alert(data);
 });
+        });
+    });
+    
 </script>  
 </head>
   <body>
     <h1>Hello World<h2>
-    <form action = "test.py" method="post">test</form>
 
     <input type="text" name="message">
     <button class="send">Send Msg</button>

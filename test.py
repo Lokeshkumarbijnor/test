@@ -1,15 +1,15 @@
-#!Python/python.exe
+# !C:\Python\python.exe
 
-print("Content-type:text/html\r\n\r\n")
+
 # Import modules for CGI handling 
-import cgi, cgitb
+# import cgi, cgitb
 
 # Create instance of FieldStorage 
-data= cgi.FieldStorage()
+# data= cgi.FieldStorage()
 
 # Get data from fields
-output = data.getvalue("param")
-
+# output = data.getvalue("param")
+print("Content-type:text/html\r\n\r\n")
 # This will print to stdout for testing
 print("Hello World!!!")
-print(output)
+#print(output)
