@@ -1,15 +1,15 @@
-#!C:\Python\python.exe
+#!Python/python.exe
 
-print('content-type: text/html\r\n\r\n')
-import cgi,os
+print("Content-type:text/html\r\n\r\n")
+# Import modules for CGI handling 
+import cgi, cgitb
 
-form = cgi.FieldStorage()
-msg = form.getvalue("message_py")
-print ('<html>')
-print ('<head>')
-print ('<title>Hello World - First CGI Program</title>')
-print ('</head>')
-print ('<body>')
-print ('<h2>Hello World! This is my first CGI program %s</h2>'% msg)
-print ('</body>')
-print ('</html>')
+# Create instance of FieldStorage 
+data= cgi.FieldStorage()
+
+# Get data from fields
+output = data.getvalue("param")
+
+# This will print to stdout for testing
+print("Hello World!!!")
+print(output)

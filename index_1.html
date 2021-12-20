@@ -1,38 +1,30 @@
 <html>
   <head>
     <title>Testing Only</title>
-    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-<meta content="utf-8" http-equiv="encoding">
-
     <!-- <script
         src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous">
 </script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
 <script>
-    $.ajax({
+   $.ajax({
     type: 'POST',
     url: "test.py",
-    data: {param: "hello ji"}, //passing some input here
+    data: {param: xyz}, //passing some input here
     dataType: "text",
-    success: function(data){
-       output = data;
+    success: function(response){
+       output = response;
        alert(output);
     }
 }).done(function(data){
 console.log(data);
 alert(data);
 });
-</script>  
-</head>
-  <body>
-    <h1>Hello World<h2>
-    <form action = "test.py" method="post">test</form>
-
-    <input type="text" name="message">
-    <button class="send">Send Msg</button>
-        <p>Hello</p>
-
-  </body>
+</script>
+<body>
+    <button>send</button>
+    <p>new world</p>
+</body>
 </html>
