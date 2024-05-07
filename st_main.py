@@ -15,7 +15,7 @@ st.markdown("---")
 #df.insert(0, 'DOWNLOAD', True)
 
 # Pickle file path
-game_pickle_file = r"E:\WORK\Python\Projects\APP\Game_Code\Games_Download\games_data.pkl"
+game_pickle_file = os.path.join(os.getcwd(), "games_data.pkl")
 
 # Creating a Pickle File
 #df.to_pickle(game_pickle_file)
