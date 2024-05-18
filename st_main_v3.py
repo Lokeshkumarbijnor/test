@@ -76,7 +76,7 @@ def download_file(url=None, my_bar_status=None, f_name=None):
                     if my_bar_status:
                         if percent_complete > 100:
                             percent_complete = 100
-                        my_bar_status.progress(percent_complete, text=f"Downloading: {base_file_name.strip(".zip")}")
+                        my_bar_status.progress(percent_complete, text=f"Downloading: {base_file_name.strip('.zip')}")
                         if not size_downloaded:
                             size_downloaded = chunk_size
                         percent_complete = int((size_downloaded / total_size) * 100)
