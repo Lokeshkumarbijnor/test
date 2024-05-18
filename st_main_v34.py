@@ -142,6 +142,7 @@ with st.sidebar:
             batch = st.multiselect("Batch: ", options=batch_list, default=batch_list[0])
         except:
             print(f"ERROR: {traceback.format_exc()}")
+            batch = st.multiselect("Batch: ", options=[0], default=0)
     else:
         batch = st.multiselect("Batch: ", options=[0], default=0)
     print("BATCH", batch)
