@@ -98,11 +98,66 @@ def download_file(url=None, my_bar_status=None, f_name=None):
 
 
 with st.sidebar:
+    default_console = None
     category = st.multiselect("category", options=category_list, default=category_list[0])
+
     console_list = df.loc[df['CATEGORY'].isin(category), 'CONSOLE'].unique().tolist()
-    console = st.multiselect("Console", options=console_list, default=console_list[0])
+    if console_list:
+        default_console = console_list[0]
+    if default_console:
+        console = st.multiselect("Console", options=console_list, default=console_list[0])
+    else:
+        console = st.multiselect("Console", options=console_list)
     game_list = df.loc[df['CONSOLE'].isin(console), 'GAMENAME'].unique().tolist()
-    game = st.multiselect("Game: ", options=game_list, default=game_list)
+
+    print("Total games:", len(game_list))
+    batch_divider = 1000
+    batch_dict = {}
+    batch_list = []
+    s_range = 0
+    e_range = 0
+    len_games = len(game_list)
+    if len(game_list) > 1000:
+        if len_games > 1000:
+            counter = 1
+            start_pointer = 1
+            while len_games > 1000:
+                sub_part = len_games - 1000
+                end_pointer = 1000 * counter
+                batch_dict[counter] = (start_pointer, end_pointer)
+                len_games = len_games - 1000
+                if len_games < 1000:
+                    batch_dict[counter + 1] = (end_pointer, len_games)
+                else:
+                    counter = counter + 1
+                start_pointer = end_pointer
+                # print(sub_part)
+    else:
+        batch_dict[1] = (1, len_games)
+    if batch_dict:
+        batch_list = list(batch_dict.values())
+    if batch_list:
+        batch = st.multiselect("Batch: ", options=batch_list, default=batch_list[0])
+    else:
+        batch = st.multiselect("Batch: ", options=[0], default=0)
+    print("BATCH", batch)
+    if batch:
+        s_range = batch[0][0]
+        e_range = batch[0][-1]
+
+        if e_range != 0:
+            e_range = e_range + 1
+
+    print("Range...")
+    print(s_range, e_range)
+
+    if s_range and e_range:
+        if s_range == 1:
+            s_range = 0
+        game = st.multiselect("Game: ", options=game_list, default=game_list[s_range:e_range])
+    else:
+        game = st.multiselect("Game: ", options=[0], default=0)
+
     #button = st.button("Submit", on_click=print_new_df)
 
 new_df = df.loc[df['CATEGORY'].isin(category) & df['CONSOLE'].isin(console) & df['GAMENAME'].isin(game)]
