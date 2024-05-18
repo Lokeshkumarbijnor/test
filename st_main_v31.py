@@ -133,7 +133,7 @@ with st.sidebar:
                 start_pointer = end_pointer
                 # print(sub_part)
     else:
-        batch_dict[1] = [(1, len_games)]
+        batch_dict[1] = (1, len_games)
     if batch_dict:
         batch_list = list(batch_dict.values())
     if batch_list:
