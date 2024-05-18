@@ -138,7 +138,10 @@ with st.sidebar:
         batch_list = list(batch_dict.values())
     if batch_list:
         print(f"batch List: {batch_list}")
-        batch = st.multiselect("Batch: ", options=batch_list, default=batch_list[0])
+        try:
+            batch = st.multiselect("Batch: ", options=batch_list, default=batch_list[0])
+        except:
+            print(f"ERROR: {traceback.format_exe()}")
     else:
         batch = st.multiselect("Batch: ", options=[0], default=0)
     print("BATCH", batch)
