@@ -88,7 +88,7 @@ def download_file(url=None, my_bar_status=None, f_name=None):
                     #print(chunk)
                     f.write(chunk)
     except:
-        print(f"Error found in downloading: {traceback.format_exe()}")
+        print(f"Error found in downloading: {traceback.format_exc()}")
         st.write(f"Error: {base_file_name}")
         if os.path.exists(local_filename):
             os.remove(local_filename)
@@ -141,7 +141,7 @@ with st.sidebar:
         try:
             batch = st.multiselect("Batch: ", options=batch_list, default=batch_list[0])
         except:
-            print(f"ERROR: {traceback.format_exe()}")
+            print(f"ERROR: {traceback.format_exc()}")
     else:
         batch = st.multiselect("Batch: ", options=[0], default=0)
     print("BATCH", batch)
